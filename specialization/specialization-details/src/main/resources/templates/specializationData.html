@@ -1,0 +1,45 @@
+<html xmlns:th="https://www.thymeleaf.org/">
+
+<head>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" />
+	<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+	<div class="container">
+		<div class="card">
+			<div class="card-header bg-info text-white text-center">
+				<label>specialization details</label>
+			</div>
+			<div class="card-header">
+				<table class="table table-hover">
+					<tr>
+						<th>ID</th>
+						<th>CODE</th>
+						<th>NAME</th>
+						<th>NOTE</th>
+						<th>OPERATOR</th>
+					</tr>
+					<tr th:each="object:${list}">
+						<td th:text="${object.specId}"></td>
+						<td th:text="${object.specName}"></td>
+						<td th:text="${object.specCode}"></td>
+						<td th:text="${object.specNote}"></td>
+						<td> <a th:href="@{specialization/delete(id=${object.specId})}">delete</a>|
+							<a th:href="@{specialization/edit(id=${object.specId})}">edit</a>
+						</td>
+					</tr>
+
+				</table>
+
+			</div>
+			<div class="card-header"></div>
+		</div>
+	</div>
+
+
+</body>
+
+</html>
