@@ -100,7 +100,7 @@
 				} else {
 					$.ajax({
 						url: "checkout",
-						data: {"code": val},
+						data: {"specCode": val},
 						success: function (resTxt) {
 							if (resTxt == "") {
 								$("#doctorCodeError").show();

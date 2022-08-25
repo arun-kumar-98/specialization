@@ -12,7 +12,7 @@ import javax.persistence.Table;
 public class Specialization {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer specId;
 
 	@Column(length = 10, nullable = false, unique = true)

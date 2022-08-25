@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.main.entity.Specialization;
 import com.main.service.ISpecializationService;
@@ -36,23 +37,24 @@ public class SpecializationController {
 	}
 
 	@GetMapping("/all")
-	public String getDetails(Model model) {
+	public String getDetails(Model model,
+			@RequestParam(required = false, value = "message") String message) {
 
 		List<Specialization> list = specializationService.getAllDetails();
 		model.addAttribute("list", list);
-
+		model.addAttribute("message", message);
 		return "specializationData";
 	}
 
 	@GetMapping("/delete")
-	public String removeSpecialization(@RequestParam Integer id) {
+	public String removeSpecialization(@RequestParam Integer id, RedirectAttributes attributes) {
 		specializationService.remove(id);
+		attributes.addAttribute("message", "specialization deleted with (" + id + " )");
 		return "redirect:all";
 	}
 
 	@GetMapping("/checkout")
-	@ResponseBody
-	public String isFielsExists(@RequestParam String code) {
+	public @ResponseBody String isFielsExists(@RequestParam String code) {
 		String message = "";
 		if (specializationService.isExistsSpecialization(code)) {
 			message = code + " already exists";
