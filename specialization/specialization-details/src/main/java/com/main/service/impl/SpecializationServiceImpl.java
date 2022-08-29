@@ -42,6 +42,14 @@ public class SpecializationServiceImpl implements ISpecializationService {
 	}
 
 	@Override
+	public Specialization updateSpecialization(Specialization specialization) {
+
+		Specialization specialization2 = specializationRepository.save(specialization);
+		return specialization2;
+
+	}
+
+	@Override
 	public boolean isExistsSpecialization(String code) {
 		Integer count = specializationRepository.getSpecCodeCount(code);
 		boolean exists = count > 0 ? true : false;

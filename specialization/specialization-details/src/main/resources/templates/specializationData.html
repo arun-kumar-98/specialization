@@ -29,9 +29,9 @@
 						<td th:text="${object.specName}"></td>
 						<td th:text="${object.specCode}"></td>
 						<td th:text="${object.specNote}"></td>
-						<td> <a th:href="@{specialization/delete(id=${object.specId})}"><i class="fa fa-trash-o"
+						<td> <a th:href="@{/specialization/delete(id=${object.specId})}"><i class="fa fa-trash-o"
 									aria-hidden="true"></i></a>|
-							<a th:href="@{specialization/edit(id=${object.specId})}"><i class="fa fa-pencil-square-o"
+							<a th:href="@{/specialization/edit(id=${object.specId})}"><i class="fa fa-pencil-square-o"
 									aria-hidden="true"></i></a>
 						</td>
 					</tr>

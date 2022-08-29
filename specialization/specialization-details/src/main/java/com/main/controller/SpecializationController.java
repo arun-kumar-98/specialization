@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -37,8 +38,7 @@ public class SpecializationController {
 	}
 
 	@GetMapping("/all")
-	public String getDetails(Model model,
-			@RequestParam(required = false, value = "message") String message) {
+	public String getDetails(Model model, @RequestParam(required = false, value = "message") String message) {
 
 		List<Specialization> list = specializationService.getAllDetails();
 		model.addAttribute("list", list);
@@ -50,6 +50,20 @@ public class SpecializationController {
 	public String removeSpecialization(@RequestParam Integer id, RedirectAttributes attributes) {
 		specializationService.remove(id);
 		attributes.addAttribute("message", "specialization deleted with (" + id + " )");
+		return "redirect:all";
+	}
+
+	@GetMapping("/edit")
+	public String showEditPage(@RequestParam Integer id, Model model) {
+		Specialization specialization = specializationService.getOne(id);
+		model.addAttribute("specialization", specialization);
+		return "specializationEdit";
+	}
+
+	@PostMapping("/updated")
+	public String updatedRecord(@ModelAttribute Specialization specialization, RedirectAttributes attributes) {
+		Specialization specialization2 = specializationService.updateSpecialization(specialization);
+		attributes.addAttribute("message", "specialization updated with id (" + specialization2.getSpecId() + " )");
 		return "redirect:all";
 	}
 

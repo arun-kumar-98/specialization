@@ -14,5 +14,7 @@ public interface ISpecializationService {
 
 	void remove(Integer id);
 
+	Specialization updateSpecialization(Specialization specialization);
+
 	boolean isExistsSpecialization(String code);
 }
